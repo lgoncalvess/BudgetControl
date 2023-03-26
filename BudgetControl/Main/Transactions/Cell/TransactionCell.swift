@@ -7,75 +7,99 @@
 
 import UIKit
 
-enum TransactionType: String {
-    case input = "greenTransaction"
-    case output = "redTransaction"
-}
-
-struct TransactionModel {
-    var transactionType: TransactionType
-    var name: String
-    var amount: Double
-}
-
 class TransactionCell: UITableViewCell {
-    var model: TransactionModel?
+    var model: Transaction?
     let circle = UIView()
     let label = UILabel()
     let amount = UILabel()
+    let chevron = UIImageView()
+    let border = UIView()
+    
     static let reuseID = "TransactionCell"
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setup()
+        styleElements()
+        styleConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup() {
+    private func styleElements() {
+        
+        backgroundColor = UIColor(named: "backgroundColor")
+        
+        border.translatesAutoresizingMaskIntoConstraints = false
+        border.backgroundColor = .gray
         
         circle.translatesAutoresizingMaskIntoConstraints = false
-        circle.layer.cornerRadius =  7
+        circle.layer.cornerRadius =  3
         circle.clipsToBounds = true
-        circle.backgroundColor = UIColor(named: model?.transactionType.rawValue ?? "greenTransaction")
+        circle.backgroundColor = UIColor(named: model?.type.rawValue ?? "greenTransaction")
         circle.layer.borderColor = UIColor.darkGray.cgColor
         circle.layer.borderWidth = 1.0
-        
+
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = model?.name ?? "Uber Eats the bestsdadasdasdasd"
+        label.text = model?.name ?? "Uber Eats teste teste teste teste teste testetestetesteteste teste teste"
         label.textColor = UIColor(named: "fontColor")
         label.textAlignment = .center
+        label.contentMode = .scaleToFill
+        label.numberOfLines = 2
         
         amount.translatesAutoresizingMaskIntoConstraints = false
-        amount.text = String(format: "%.2f", model?.amount ?? 0.0)
+        amount.text = String(format: "R$ %.2f", model?.amount ?? 765765756.0)
+        amount.adjustsFontSizeToFitWidth = true
+
+        chevron.translatesAutoresizingMaskIntoConstraints = false
+        chevron.image = UIImage(systemName: "chevron.forward.circle")!.withTintColor(UIColor(named: "fontColor") ?? .gray, renderingMode: .alwaysOriginal)
         
         contentView.addSubview(circle)
         contentView.addSubview(label)
         contentView.addSubview(amount)
+        contentView.addSubview(chevron)
+        contentView.addSubview(border)
+        
+    }
+    
+    private func styleConstraints() {
+        NSLayoutConstraint.activate([
+            border.heightAnchor.constraint(equalToConstant: 1),
+            border.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 2),
+            border.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
 
         NSLayoutConstraint.activate([
-            circle.heightAnchor.constraint(equalToConstant:13),
-            circle.widthAnchor.constraint(equalToConstant: 13),
-            circle.centerYAnchor.constraint(equalTo: label.centerYAnchor),
-            circle.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2)
+            circle.heightAnchor.constraint(equalToConstant: 30),
+            circle.widthAnchor.constraint(equalToConstant: 5),
+            circle.leadingAnchor.constraint(equalToSystemSpacingAfter: contentView.leadingAnchor, multiplier: 1),
+            circle.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            label.centerYAnchor.constraint(equalTo: centerYAnchor),
-            label.leadingAnchor.constraint(equalToSystemSpacingAfter: circle.trailingAnchor, multiplier: 4),
-            //label.trailingAnchor.constraint(equalToSystemSpacingAfter: amount.leadingAnchor, multiplier: 2)
+            label.leadingAnchor.constraint(equalTo: circle.trailingAnchor, constant: 12),
+            label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            label.trailingAnchor.constraint(equalTo: amount.leadingAnchor, constant: -8)
         ])
         
         NSLayoutConstraint.activate([
-            trailingAnchor.constraint(equalToSystemSpacingAfter: amount.trailingAnchor, multiplier: 2),
-            amount.centerYAnchor.constraint(equalTo: label.centerYAnchor),
-            amount.leadingAnchor.constraint(equalToSystemSpacingAfter: label.trailingAnchor, multiplier: 2)
+            amount.topAnchor.constraint(equalToSystemSpacingBelow: contentView.topAnchor, multiplier: 3),
+            contentView.trailingAnchor.constraint(equalToSystemSpacingAfter: amount.trailingAnchor, multiplier: 2)
         ])
         
-//        circle.setContentHuggingPriority(UILayoutPriority.defaultHigh, for: .horizontal)
-//        label.setContentHuggingPriority(UILayoutPriority.defaultLow, for: .horizontal)
+        NSLayoutConstraint.activate([
+            chevron.topAnchor.constraint(equalToSystemSpacingBelow: amount.bottomAnchor, multiplier: 0.5),
+            contentView.trailingAnchor.constraint(equalToSystemSpacingAfter: chevron.trailingAnchor, multiplier: 2)
+        ])
         
+        chevron.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+    }
+    
+    func configure(with transaction: Transaction) {
+        circle.backgroundColor = UIColor(named: transaction.type.rawValue)
+        label.text = transaction.name
+        amount.text = String(format: "R$ %.2f", transaction.amount)
     }
 }

@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		A70273CC29CBA3DD009DEA39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70273CB29CBA3DD009DEA39 /* AppDelegate.swift */; };
-		A70273D029CBA3DD009DEA39 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70273CF29CBA3DD009DEA39 /* ViewController.swift */; };
 		A70273D529CBA3DD009DEA39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A70273D429CBA3DD009DEA39 /* Assets.xcassets */; };
 		A70273D829CBA3DD009DEA39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A70273D629CBA3DD009DEA39 /* LaunchScreen.storyboard */; };
+		A708C86729D0B474003D0F8C /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708C86629D0B474003D0F8C /* TransactionModel.swift */; };
+		A708C86929D0B951003D0F8C /* CellDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708C86829D0B951003D0F8C /* CellDetailViewController.swift */; };
 		A78F56CF29CBD1410068C307 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78F56CE29CBD1410068C307 /* MainViewController.swift */; };
 		A78F56D329CBD5980068C307 /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78F56D229CBD5980068C307 /* TransactionCell.swift */; };
 		A78F56D529CBD68A0068C307 /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78F56D429CBD68A0068C307 /* TransactionViewController.swift */; };
@@ -19,10 +20,11 @@
 /* Begin PBXFileReference section */
 		A70273C829CBA3DD009DEA39 /* BudgetControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A70273CB29CBA3DD009DEA39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A70273CF29CBA3DD009DEA39 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A70273D429CBA3DD009DEA39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A70273D729CBA3DD009DEA39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A70273D929CBA3DD009DEA39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A708C86629D0B474003D0F8C /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
+		A708C86829D0B951003D0F8C /* CellDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDetailViewController.swift; sourceTree = "<group>"; };
 		A78F56CE29CBD1410068C307 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A78F56D229CBD5980068C307 /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
 		A78F56D429CBD68A0068C307 /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
@@ -58,10 +60,9 @@
 		A70273CA29CBA3DD009DEA39 /* BudgetControl */ = {
 			isa = PBXGroup;
 			children = (
+				A70273DF29CBA407009DEA39 /* App */,
 				A78F56CD29CBD10A0068C307 /* Main */,
 				A70273CB29CBA3DD009DEA39 /* AppDelegate.swift */,
-				A70273CF29CBA3DD009DEA39 /* ViewController.swift */,
-				A70273DF29CBA407009DEA39 /* App */,
 			);
 			path = BudgetControl;
 			sourceTree = "<group>";
@@ -76,9 +77,25 @@
 			name = App;
 			sourceTree = "<group>";
 		};
+		A708C86429D0B040003D0F8C /* Header */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		A708C86529D0B43D003D0F8C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A708C86629D0B474003D0F8C /* TransactionModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		A78F56CD29CBD10A0068C307 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				A708C86429D0B040003D0F8C /* Header */,
 				A78F56D029CBD44D0068C307 /* Transactions */,
 				A78F56CE29CBD1410068C307 /* MainViewController.swift */,
 			);
@@ -88,6 +105,7 @@
 		A78F56D029CBD44D0068C307 /* Transactions */ = {
 			isa = PBXGroup;
 			children = (
+				A708C86529D0B43D003D0F8C /* Model */,
 				A78F56D129CBD5800068C307 /* Cell */,
 				A78F56D429CBD68A0068C307 /* TransactionViewController.swift */,
 			);
@@ -98,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				A78F56D229CBD5980068C307 /* TransactionCell.swift */,
+				A708C86829D0B951003D0F8C /* CellDetailViewController.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -172,11 +191,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A708C86729D0B474003D0F8C /* TransactionModel.swift in Sources */,
 				A78F56D529CBD68A0068C307 /* TransactionViewController.swift in Sources */,
 				A78F56CF29CBD1410068C307 /* MainViewController.swift in Sources */,
-				A70273D029CBA3DD009DEA39 /* ViewController.swift in Sources */,
 				A78F56D329CBD5980068C307 /* TransactionCell.swift in Sources */,
 				A70273CC29CBA3DD009DEA39 /* AppDelegate.swift in Sources */,
+				A708C86929D0B951003D0F8C /* CellDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

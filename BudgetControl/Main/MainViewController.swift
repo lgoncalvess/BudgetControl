@@ -8,27 +8,30 @@
 import UIKit
 
 class MainViewController: UITabBarController {
+    
+    let transactionViewController = TransactionViewController()
+    let vc2 = UIViewController()
+    let vc3 = UIViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setup()
+        setupTabBar()
     }
     
-    func setup() {
-        let vc1 = TransactionViewController()
-        let vc2 = UIViewController()
-        let vc3 = UIViewController()
+    func setupTabBar() {
         
-        vc1.tabBarItem = UITabBarItem(title: "home", image: UIImage(systemName: "house.circle"), tag: 0)
+        transactionViewController.tabBarItem = UITabBarItem(title: "transactions", image: UIImage(systemName: "bag.circle"), tag: 0)
         vc2.tabBarItem = UITabBarItem(title: "add", image: UIImage(systemName: "plus.circle"), tag: 1)
         vc3.tabBarItem = UITabBarItem(title: "charts", image: UIImage(systemName: "chart.pie"), tag: 2)
         vc2.view.backgroundColor = .red
 
-        tabBar.tintColor = .black
+        tabBar.tintColor = .red
         tabBar.barTintColor = UIColor(named: "tabBar")
         tabBar.backgroundColor = UIColor(named: "tabBar")
-        let summaryNC = UINavigationController(rootViewController: vc1)
-        viewControllers = [summaryNC,vc2,vc3]
+        
+        let transactionNavigationController = UINavigationController(rootViewController: transactionViewController)
+        viewControllers = [transactionNavigationController,vc2,vc3]
         
     }
 }
